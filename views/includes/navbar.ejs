@@ -1,0 +1,110 @@
+
+
+<style>
+  .custom-search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;              /* ← make it stretch */
+  max-width: 800px;          /* ← remove fixed cap */
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.15);
+  background-color: #fff;
+  border: 1px solid black;
+}
+
+
+  .custom-search-bar input {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-right: 1px solid #e0e0e0;
+  }
+
+  .custom-search-bar button {
+    background-color: #e63946; /* Reddish theme */
+    border: none;
+    color: #fff;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+  }
+
+  .custom-search-bar button:hover {
+    background-color: #c62828;
+  }
+
+  .custom-search-bar button i {
+    pointer-events: none;
+  }
+
+  @media (max-width: 576px) {
+    .custom-search-bar {
+      width: 95%;
+    }
+
+    .custom-search-bar input {
+      font-size: 14px;
+    }
+
+    .custom-search-bar button {
+      padding: 10px 16px;
+    }
+  }
+</style>
+
+
+<nav class="navbar navbar-expand-lg bg-body-light border-bottom sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/li"><i class="fa-regular fa-compass"></i></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+
+        <a class="nav-link" href="/listings">Explore</a>
+        
+      </div>
+
+      <div class="flex-grow-1 px-3 d-flex justify-content-center">
+        <div class="custom-search-bar w-100">
+          <input type="text" id="searchInput" placeholder="Search Destinations..." />
+          <button type="button" id="searchBtn">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Dropdown for Signup/Login/Logout -->
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Add newsss listing</a>
+        <div class="dropdown">
+          <button
+            class="btn btn-outline-secondary dropdown-toggle"
+            type="button"
+            id="authDropdown"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Account
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="authDropdown">
+            
+            <% if (!currUser) { %>
+              <li><a class="dropdown-item" href="/signup">Signup</a></li>
+              <li><a class="dropdown-item" href="/login">Login</a></li>
+            <% } %>
+            <% if (currUser) { %>
+              <li><a class="dropdown-item" href="/logout">Logout</a></li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
